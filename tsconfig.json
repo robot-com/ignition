@@ -4,7 +4,7 @@
         "declaration": true,
         "declarationDir": "lib",
         "declarationMap": true,
-        "moduleResolution": "node",
+        "moduleResolution": "bundler",
         "noFallthroughCasesInSwitch": true,
         "noImplicitOverride": true,
         "noUncheckedIndexedAccess": true,
@@ -33,10 +33,22 @@
             "path": "apps/web"
         },
         {
+            "path": "apps/server"
+        },
+        {
+            "path": "shared/api"
+        },
+        {
             "path": "shared/lib"
         },
         {
             "path": "shared/components"
+        },
+        {
+            "path": "shared/context"
+        },
+        {
+            "path": "shared/api-helpers"
         }
     ]
 }

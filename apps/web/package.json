@@ -8,13 +8,15 @@
         "preview": "vite preview"
     },
     "devDependencies": {
+        "@tailwindcss/vite": "^4.1.11",
         "@types/react": "^19.1.8",
         "@types/react-dom": "^19.1.6",
         "@vitejs/plugin-react": "^4.6.0",
-        "@tailwindcss/vite": "^4.1.11",
         "vite": "^7.0.3"
     },
     "dependencies": {
+        "@shared/api": "workspace:*",
+        "@tanstack/react-query": "^5.81.5",
         "@types/react": "^19.1.8",
         "@types/react-dom": "^19.1.6",
         "react": "^19.1.0",

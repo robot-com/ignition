@@ -1,0 +1,13 @@
+{
+    "name": "@shared/api-helpers",
+    "private": true,
+    "type": "module",
+    "exports": {
+        ".": "./src/index.ts"
+    },
+    "dependencies": {
+        "@shared/context": "workspace:*",
+        "@trpc/server": "^11.4.3",
+        "superjson": "^2.2.2"
+    }
+}

@@ -16,6 +16,7 @@ The project is organized into `apps`, `shared`, and `packages` directories to pr
     -   `api-helpers/`: Contains base tRPC procedures, middleware, and configuration necessary for setting up the API layer. Feature packages extend these helpers to define their specific API endpoints.
     -   `context/`: Manages common context and I/O dependencies, such as database connections and authentication services, providing essential utilities to other modules.
     -   `database/`: Sets up the database, including connection configurations and SQL schema definitions.
+    -   `auth/`: Contains authentication-related logic, such session handling, which can be shared between the frontend and backend.
 -   **`packages/`**: Dedicated to encapsulating specific business logic or features as self-contained modules. These packages define their own tRPC procedures by extending from `shared/api-helpers` and interact with core services (like context and database).
     -   `platform_feature_a/`: A package containing specific business logic or features for "Feature A," including its tRPC procedures.
     -   `platform_feature_b/`: Another package containing business logic or features for "Feature B," including its tRPC procedures.
@@ -42,6 +43,7 @@ graph LR
         api_helpers(shared/api-helpers)
         context(shared/context)
         database(shared/database)
+        auth(shared/auth)
     end
 
     subgraph Packages
@@ -69,7 +71,10 @@ graph LR
     api --> feature_a
     api --> feature_b
 
+    auth --> database
+
     context --> database
+    context --> auth
 
     database --> lib
     database --> feature_a_schema
