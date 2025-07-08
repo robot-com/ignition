@@ -1,0 +1,10 @@
+{
+    "name": "@robot.com/ignition-template",
+    "type": "module",
+    "scripts": {
+        "dev": "concurrently \"pnpm --filter web dev\" \"pnpm --filter server dev\""
+    },
+    "devDependencies": {
+        "concurrently": "^9.2.0"
+    }
+}

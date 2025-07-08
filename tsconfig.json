@@ -1,0 +1,42 @@
+{
+    "compilerOptions": {
+        "composite": true,
+        "declaration": true,
+        "declarationDir": "lib",
+        "declarationMap": true,
+        "moduleResolution": "node",
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitOverride": true,
+        "noUncheckedIndexedAccess": true,
+        "sourceMap": true,
+        "noEmit": true,
+        "strict": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "isolatedModules": true,
+        "jsx": "react-jsx",
+        "lib": [
+            "DOM",
+            "DOM.Iterable",
+            "ESNext"
+        ],
+        "module": "esnext",
+        "target": "ESNext"
+    },
+    "files": [],
+    "references": [
+        {
+            "path": "apps/web"
+        },
+        {
+            "path": "shared/lib"
+        },
+        {
+            "path": "shared/components"
+        }
+    ]
+}
