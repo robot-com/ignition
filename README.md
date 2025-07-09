@@ -137,6 +137,11 @@ export const appRouter = router({
 })
 ```
 
+Database schemas must be added to the `shared/database` module. Schemas can be imported from other modules but they must not generate circular dependencies.
+
+- `@packages/my_feature -> @shared/database -> @shared/my_feature_schema` -> OK
+- `@packages/my_feature -> @shared/database -> @shared/my_feature` -> BAD
+
 ### Rules
 
 **Exports**
