@@ -1,10 +1,9 @@
 import { publicProcedure, router } from "@shared/api-helpers";
 import { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
+import { posts } from "@packages/posts";
 
 export const appRouter = router({
-    hello: publicProcedure.query(() => {
-        return "Hello world!";
-    }),
+    posts
 })
 
 export type AppRouter = typeof appRouter

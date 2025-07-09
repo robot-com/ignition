@@ -1,0 +1,21 @@
+{
+    "name": "@shared/database",
+    "private": true,
+    "type": "module",
+    "exports": {
+        ".": "./src/index.ts"
+    },
+    "scripts": {
+        "db:push": "drizzle-kit push"
+    },
+    "dependencies": {
+        "drizzle-orm": "^0.44.2",
+        "nanoid": "^5.1.5",
+        "postgres": "^3.4.7"
+    },
+    "devDependencies": {
+        "@types/node": "^24.0.11",
+        "dotenv": "^17.1.0",
+        "drizzle-kit": "^0.31.4"
+    }
+}

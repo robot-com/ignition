@@ -21,13 +21,23 @@ export const publicProcedure = t.procedure
  */
 export const protectedProcedure = t.procedure.use(async ({ ctx, next }) => {
 
-    const authenticated = false // TODO: Replace with actual authentication check
+    // TODO: Replace with actual authentication logic
+    const session = {
+        user: {
+            name: 'John Doe',
+            id: '123',
+            email: 'john.doe@example.com'
+        }
+    }
 
-    if (!authenticated) {
+    if (!session) {
         throw new TRPCError({ code: 'UNAUTHORIZED' });
     }
 
     return next({
-        ctx
+        ctx: {
+            session,
+            ...ctx,
+        }
     })
 })

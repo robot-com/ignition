@@ -49,6 +49,12 @@
         },
         {
             "path": "shared/api-helpers"
+        },
+        {
+            "path": "shared/database"
+        },
+        {
+            "path": "packages/posts"
         }
     ]
 }
