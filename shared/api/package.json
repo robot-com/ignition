@@ -1,0 +1,27 @@
+{
+    "name": "@shared/api",
+    "private": true,
+    "type": "module",
+    "exports": {
+        "./server": "./src/server/index.ts",
+        "./client": "./src/client/index.tsx"
+    },
+    "dependencies": {
+        "@shared/api-helpers": "workspace:*",
+        "@shared/context": "workspace:*",
+        "@packages/posts": "workspace:*",
+        "@tanstack/react-query": "^5.81.5",
+        "@trpc/client": "^11.4.3",
+        "@trpc/server": "^11.4.3",
+        "@trpc/tanstack-react-query": "^11.4.3",
+        "superjson": "^2.2.2",
+        "zod": "3.25.76"
+    },
+    "devDependencies": {
+        "@types/react": "^19.1.8",
+        "react": "^19.1.0"
+    },
+    "peerDependencies": {
+        "react": "^19.1.0"
+    }
+}

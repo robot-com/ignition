@@ -1,0 +1,11 @@
+{
+    "name": "@shared/context",
+    "private": true,
+    "type": "module",
+    "exports": {
+        ".": "./src/index.ts"
+    },
+    "dependencies": {
+        "@shared/database": "workspace:*"
+    }
+}

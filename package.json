@@ -1,0 +1,12 @@
+{
+    "name": "@robot.com/ignition-template",
+    "type": "module",
+    "scripts": {
+        "dev": "dotenv concurrently \"pnpm --filter web dev\" \"pnpm --filter server dev\"",
+        "db:push": "dotenv -- pnpm --filter @shared/database db:push"
+    },
+    "devDependencies": {
+        "concurrently": "^9.2.0",
+        "dotenv-cli": "^8.0.0"
+    }
+}
