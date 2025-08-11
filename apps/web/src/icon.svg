@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512"
+    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kiwibot app icon">
+    <title>Ignition</title>
+
+    <!-- Solid blue square background -->
+    <rect width="512" height="512" fill="#4894f7ff"/>
+</svg>

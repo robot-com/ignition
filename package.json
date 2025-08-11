@@ -5,8 +5,16 @@
         "dev": "dotenv concurrently \"pnpm --filter web dev\" \"pnpm --filter server dev\"",
         "db:push": "dotenv -- pnpm --filter @shared/database db:push"
     },
+    "workspaces": [
+        "apps/*",
+        "packages/*",
+        "shared/*"
+    ],
     "devDependencies": {
+        "@prettier/plugin-oxc": "^0.0.4",
         "concurrently": "^9.2.0",
-        "dotenv-cli": "^8.0.0"
+        "dotenv-cli": "^8.0.0",
+        "oxlint": "^1.9.0",
+        "prettier": "3.6.2"
     }
 }

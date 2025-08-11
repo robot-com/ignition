@@ -1,5 +1,5 @@
 {
-    "name": "@shared/lib",
+    "name": "@shared/components",
     "private": true,
     "type": "module",
     "exports": {

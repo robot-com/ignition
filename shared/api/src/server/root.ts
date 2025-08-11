@@ -1,9 +1,9 @@
-import { publicProcedure, router } from "@shared/api-helpers";
-import { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
-import { posts } from "@packages/posts";
+import { posts } from '@packages/posts'
+import { router } from '@shared/api-helpers'
+import type { inferRouterInputs, inferRouterOutputs } from '@trpc/server'
 
 export const appRouter = router({
-    posts
+    posts,
 })
 
 export type AppRouter = typeof appRouter

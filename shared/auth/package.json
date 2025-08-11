@@ -1,0 +1,14 @@
+{
+    "name": "@shared/auth",
+    "private": true,
+    "type": "module",
+    "exports": {
+        "./react": "./src/react/index.ts",
+        "./models": "./src/models/index.ts",
+        "./services": "./src/services/index.ts"
+    },
+    "dependencies": {
+        "@shared/database": "workspace:*",
+        "better-auth": "^1.3.4"
+    }
+}

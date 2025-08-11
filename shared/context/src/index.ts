@@ -1,11 +1,12 @@
-import { createDatabaseClient, createDrizzle, DBType } from "@shared/database"
-
-type Auth = {} // TODO: Replace with actual Auth type (from auth package)
+import type { AuthService } from '@shared/auth/models'
+import { createAuthService } from '@shared/auth/services'
+import type { DBType } from '@shared/database'
+import { createDatabaseClient, createDrizzle } from '@shared/database'
 
 type Settings = {} // Replace with actual Settings type
 
 export type Context = {
-    auth: Auth
+    auth: AuthService
     db: DBType
     settings: Settings
 }
@@ -13,11 +14,10 @@ export type Context = {
 // This function is async because it may potentially involve asynchronous operations such as
 // initializing a database connection or fetching configuration settings.
 export async function createContext(): Promise<Context> {
-
     // Initialize auth, db, and settings here
-    const auth: Auth = {} // TODO: Replace with actual auth initialization
-    const db = createDrizzle(await createDatabaseClient())
     const settings: Settings = {} // TODO: Replace with actual settings initialization
+    const db = createDrizzle(await createDatabaseClient())
+    const auth: AuthService = await createAuthService(db)
 
     return {
         auth,

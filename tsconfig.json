@@ -54,6 +54,9 @@
             "path": "shared/database"
         },
         {
+            "path": "shared/auth"
+        },
+        {
             "path": "packages/posts"
         }
     ]

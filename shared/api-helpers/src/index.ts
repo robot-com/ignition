@@ -20,24 +20,16 @@ export const publicProcedure = t.procedure
  * Export reusable procedure that checks if the user is authenticated
  */
 export const protectedProcedure = t.procedure.use(async ({ ctx, next }) => {
-
-    // TODO: Replace with actual authentication logic
-    const session = {
-        user: {
-            name: 'John Doe',
-            id: '123',
-            email: 'john.doe@example.com'
-        }
-    }
+    const session = await ctx.auth.getSession(ctx.req.headers)
 
     if (!session) {
-        throw new TRPCError({ code: 'UNAUTHORIZED' });
+        throw new TRPCError({ code: 'UNAUTHORIZED' })
     }
 
     return next({
         ctx: {
             session,
             ...ctx,
-        }
+        },
     })
 })
