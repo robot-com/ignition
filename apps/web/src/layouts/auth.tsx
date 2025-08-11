@@ -1,7 +1,7 @@
+import { Navigate, Outlet, useLocation } from 'react-router'
 import { Center } from '@/components/center'
 import { Spinner } from '@/components/spinner'
 import { useAuth } from '@/hooks/use-auth'
-import { Navigate, Outlet, useLocation } from 'react-router'
 
 export function AuthLoading() {
     return (
@@ -42,7 +42,7 @@ export function NoAuthLayout() {
     }
 
     if (auth) {
-        return <Navigate to="" />
+        return <Navigate to='' />
     }
 
     return <Outlet />

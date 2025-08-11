@@ -1,14 +1,14 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import {
     createTRPCClient,
     httpBatchStreamLink,
     httpSubscriptionLink,
     splitLink,
 } from '@trpc/client'
-import superjson from 'superjson'
-import type { AppRouter } from '../server/root'
 import { createTRPCContext } from '@trpc/tanstack-react-query'
 import { useState } from 'react'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import superjson from 'superjson'
+import type { AppRouter } from '../server/root'
 
 export const trpc = createTRPCClient<AppRouter>({
     links: [
