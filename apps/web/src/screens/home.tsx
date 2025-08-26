@@ -21,13 +21,13 @@ export function HomeScreen() {
             onError: (error) => {
                 console.error('Error creating post:', error)
             },
-        })
+        }),
     )
 
     return (
-        <main className='p-2 grid grid-cols-1 md:grid-cols-2 gap-2'>
+        <main className="p-2 grid grid-cols-1 md:grid-cols-2 gap-2">
             <form
-                className='space-y-2'
+                className="space-y-2"
                 onSubmit={(e) => {
                     e.preventDefault()
                     const formData = new FormData(e.target as HTMLFormElement)
@@ -37,17 +37,17 @@ export function HomeScreen() {
                     })
                 }}
             >
-                <div className='space-y-1'>
+                <div className="space-y-1">
                     <Label>Post title</Label>
-                    <Input name='title' placeholder='Top 10 ...' />
+                    <Input name="title" placeholder="Top 10 ..." />
                 </div>
-                <div className='space-y-1'>
+                <div className="space-y-1">
                     <Label>Content</Label>
-                    <Textarea name='content' />
+                    <Textarea name="content" />
                 </div>
                 <Button
-                    type='submit'
-                    className='w-full'
+                    type="submit"
+                    className="w-full"
                     disabled={createPost.isPending}
                 >
                     Create
@@ -71,9 +71,9 @@ function PostList() {
     return (
         <ul>
             {posts.map((post) => (
-                <li key={post.id} className='pb-2'>
-                    <h3 className='text-md'>{post.title}</h3>
-                    <p className='text-xs'>{post.content}</p>
+                <li key={post.id} className="pb-2">
+                    <h3 className="text-md">{post.title}</h3>
+                    <p className="text-xs">{post.content}</p>
                 </li>
             ))}
         </ul>

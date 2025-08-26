@@ -3,7 +3,9 @@ import { createAuthService } from '@shared/auth/services'
 import type { DBType } from '@shared/database'
 import { createDatabaseClient, createDrizzle } from '@shared/database'
 
-type Settings = {} // Replace with actual Settings type
+type Settings = {
+    env: string
+} // Replace with actual Settings type
 
 export type Context = {
     auth: AuthService
@@ -15,7 +17,9 @@ export type Context = {
 // initializing a database connection or fetching configuration settings.
 export async function createContext(): Promise<Context> {
     // Initialize auth, db, and settings here
-    const settings: Settings = {} // TODO: Replace with actual settings initialization
+    const settings: Settings = {
+        env: process.env.NODE_ENV || 'development',
+    }
     const db = createDrizzle(await createDatabaseClient())
     const auth: AuthService = await createAuthService(db)
 

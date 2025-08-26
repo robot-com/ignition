@@ -20,12 +20,12 @@ export const posts = router({
             z.object({
                 title: z.string().min(1, 'Title is required'),
                 content: z.string().min(1, 'Content is required'),
-            })
+            }),
         )
         .output(
             z.object({
                 id: z.string(),
-            })
+            }),
         )
         .mutation(async ({ ctx, input }) => {
             const [post] = await ctx.db

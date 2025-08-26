@@ -6,7 +6,10 @@
         ".": "./src/index.ts"
     },
     "dependencies": {
-        "@shared/database": "workspace:*",
-        "@shared/auth": "workspace:*"
+        "@shared/auth": "workspace:*",
+        "@shared/database": "workspace:*"
+    },
+    "devDependencies": {
+        "@types/node": "^24.3.0"
     }
 }

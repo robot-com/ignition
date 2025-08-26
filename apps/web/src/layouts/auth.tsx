@@ -42,7 +42,7 @@ export function NoAuthLayout() {
     }
 
     if (auth) {
-        return <Navigate to='' />
+        return <Navigate to="" />
     }
 
     return <Outlet />

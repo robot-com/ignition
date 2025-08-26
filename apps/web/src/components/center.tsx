@@ -7,7 +7,7 @@ export function Center(props: ComponentProps<'div'>) {
             {...props}
             className={cn(
                 'flex size-full items-center justify-center',
-                props.className
+                props.className,
             )}
         >
             {props.children}

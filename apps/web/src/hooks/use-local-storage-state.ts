@@ -11,7 +11,7 @@ import { useCallback, useEffect, useState } from 'react'
  */
 export function useLocalStorageState<T>(
     key: string,
-    defaultValueFn: () => T
+    defaultValueFn: () => T,
 ): [T, (newValue: T | ((prev: T) => T)) => void] {
     // State is initialized lazily from localStorage or the default value function.
     // This function only runs on the initial render.
@@ -49,7 +49,7 @@ export function useLocalStorageState<T>(
                     } catch (error) {
                         console.error(
                             `Error parsing storage event value for key "${key}":`,
-                            error
+                            error,
                         )
                     }
                 } else {
@@ -75,7 +75,7 @@ export function useLocalStorageState<T>(
         (newValue: T | ((prev: T) => T)) => {
             setState(newValue)
         },
-        []
+        [],
     )
 
     return [state, setLocalStorageState]

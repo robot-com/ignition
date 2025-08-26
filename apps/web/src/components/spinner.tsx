@@ -6,7 +6,7 @@ export function Spinner(props: ComponentProps<typeof Loader2Icon>) {
     return (
         <Loader2Icon
             size={24}
-            aria-label='Loading...'
+            aria-label="Loading..."
             {...props}
             className={cn('animate-spin', props.className)}
         />

@@ -12,7 +12,7 @@
         "shared/*"
     ],
     "devDependencies": {
-        "@biomejs/biome": "^2.2.0",
+        "@biomejs/biome": "2.2.2",
         "concurrently": "^9.2.0",
         "dotenv-cli": "^8.0.0"
     }
