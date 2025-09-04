@@ -13,6 +13,10 @@ export type Context = {
     settings: Settings
 }
 
+export type HonoEnv = {
+    Bindings: Context
+}
+
 // This function is async because it may potentially involve asynchronous operations such as
 // initializing a database connection or fetching configuration settings.
 export async function createContext(): Promise<Context> {
