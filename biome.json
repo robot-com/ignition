@@ -25,7 +25,8 @@
                     "fix": "safe",
                     "level": "warn",
                     "options": {}
-                }
+                },
+                "useParseIntRadix": "off"
             },
             "suspicious": {
                 "noUnknownAtRules": "off"

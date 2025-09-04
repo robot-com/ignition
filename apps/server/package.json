@@ -3,7 +3,8 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "NODE_ENV=development node --import=tsx --watch src/main.ts"
+        "dev": "NODE_ENV=development node --import=tsx --watch src/main.ts",
+        "test": "NODE_ENV=production tsx --experimental-test-coverage --test **/*.test.ts"
     },
     "devDependencies": {
         "@types/node": "^24.0.11"

@@ -1,38 +1,12 @@
-import type { AddressInfo } from 'node:net'
-import { serve } from '@hono/node-server'
-import { trpcHandler } from '@shared/api/server'
-import { createContext, type HonoEnv } from '@shared/context'
-import { Hono } from 'hono'
-
-async function main(signal?: AbortSignal): Promise<AddressInfo> {
-    const context = await createContext()
-
-    const app = new Hono<HonoEnv>()
-
-    app.use((c, next) => {
-        c.env = context
-
-        // TODO: Logger and other stuff in this middleware
-
-        return next()
-    })
-
-    app.all('/api/trpc/*', (c) => trpcHandler(c.req.raw, c.env))
-    app.all('/api/auth/*', (c) => c.env.auth.handler(c.req.raw))
-
-    return new Promise<AddressInfo>((resolve) => {
-        const server = serve(app, resolve)
-
-        signal?.addEventListener('abort', () => {
-            server.close()
-            context.db.$client.end()
-        })
-    })
-}
+import { startServer } from './server'
 
 const controller = new AbortController()
 
-main(controller.signal)
+startServer({
+    signal: controller.signal,
+    hostname: process.env.HOSTNAME,
+    port: process.env.PORT ? Number.parseInt(process.env.PORT) : 3000,
+})
     .then((addr) => {
         console.info('Server started successfully', addr)
     })
