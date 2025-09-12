@@ -1,5 +1,8 @@
-import { createAuthClient } from 'better-auth/react'
+import { createAuthClient as betterAuthCreateAuthClient } from 'better-auth/react'
 
-export const authClient = createAuthClient({
-    basePath: '/api/auth',
-})
+export function createAuthClient(url?: string) {
+    return betterAuthCreateAuthClient({
+        basePath: '/api/auth',
+        baseURL: url,
+    })
+}

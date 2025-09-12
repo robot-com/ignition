@@ -1,5 +1,5 @@
-import { authClient } from '@shared/auth/react'
 import { useEffect } from 'react'
+import { authClient } from '@/lib/auth-client'
 import { useLocalStorageState } from '../hooks/use-local-storage-state'
 import type { Session, User } from './types'
 
