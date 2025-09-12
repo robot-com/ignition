@@ -1,14 +1,18 @@
 import type { RouteObject } from 'react-router'
-import { NoAuthLayout } from '@/layouts/auth'
+import { NoAuthBarrier } from '@/auth/components'
 import { LoginScreen } from '@/screens/login'
+import { SignUpScreen } from '@/screens/sign-up'
 
 export const authRoute: RouteObject = {
-    element: <NoAuthLayout />,
+    element: <NoAuthBarrier />,
     children: [
         {
             path: '/login',
             element: <LoginScreen />,
         },
-        // TODO: Login & more
+        {
+            path: '/sign-up',
+            element: <SignUpScreen />,
+        },
     ],
 }

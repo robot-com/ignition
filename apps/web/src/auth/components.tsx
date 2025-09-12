@@ -1,7 +1,7 @@
 import { Navigate, Outlet, useLocation } from 'react-router'
+import { useSession } from '@/auth/hooks'
 import { Center } from '@/components/center'
 import { Spinner } from '@/components/spinner'
-import { useAuth } from '@/hooks/use-auth'
 
 export function AuthLoading() {
     return (
@@ -11,8 +11,8 @@ export function AuthLoading() {
     )
 }
 
-export function RequireAuthLayout() {
-    const auth = useAuth()
+export function AuthBarrier() {
+    const auth = useSession()
 
     const location = useLocation()
 
@@ -34,8 +34,8 @@ export function RequireAuthLayout() {
     return <Outlet />
 }
 
-export function NoAuthLayout() {
-    const auth = useAuth()
+export function NoAuthBarrier() {
+    const auth = useSession()
 
     if (auth === undefined) {
         return <AuthLoading />
