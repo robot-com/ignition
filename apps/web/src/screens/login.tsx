@@ -1,5 +1,5 @@
-import { authClient } from '@shared/auth/react'
 import { Button } from '@/components/ui/button'
+import { authClient } from '@/lib/auth-client'
 
 export function LoginScreen() {
     return (

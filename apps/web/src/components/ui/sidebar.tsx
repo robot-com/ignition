@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/suspicious/noDocumentCookie: It is a lib */
 'use client'
 
 import { Slot } from '@radix-ui/react-slot'
@@ -92,7 +93,7 @@ function SidebarProvider({
         return isMobile
             ? setOpenMobile((open) => !open)
             : setOpen((open) => !open)
-    }, [isMobile, setOpen, setOpenMobile])
+    }, [isMobile, setOpen])
 
     // Adds a keyboard shortcut to toggle the sidebar.
     React.useEffect(() => {
@@ -124,15 +125,7 @@ function SidebarProvider({
             setOpenMobile,
             toggleSidebar,
         }),
-        [
-            state,
-            open,
-            setOpen,
-            isMobile,
-            openMobile,
-            setOpenMobile,
-            toggleSidebar,
-        ],
+        [state, open, setOpen, isMobile, openMobile, toggleSidebar],
     )
 
     return (
