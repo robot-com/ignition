@@ -3,6 +3,7 @@ import { serve } from '@hono/node-server'
 import { trpcHandler } from '@shared/api/server'
 import { createContext, type HonoEnv } from '@shared/context'
 import { Hono } from 'hono'
+import { cors } from 'hono/cors'
 
 export type StartServerOptions = {
     signal?: AbortSignal
@@ -18,6 +19,15 @@ export async function startServer({
     const context = await createContext()
 
     const app = new Hono<HonoEnv>()
+
+    app.use(
+        cors({
+            origin: process.env.CLIENT_URL ?? 'http://localhost:5173',
+            credentials: true, // allow cookies/authorization headers
+            allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+            allowHeaders: ['Content-Type', 'Authorization', 'trpc-accept'],
+        }),
+    )
 
     app.use((c, next) => {
         c.env = context
