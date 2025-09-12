@@ -6,6 +6,10 @@ import type { AuthService, Session } from '../models'
 function createBetterAuth(db: DBType) {
     return betterAuth({
         database: drizzleAdapter(db, { provider: 'pg' }),
+        trustedOrigins: [process.env.CLIENT_URL ?? 'http://localhost:5173'],
+        emailAndPassword: {
+            enabled: true,
+        },
         socialProviders: {
             google: {
                 clientId: process.env.GOOGLE_CLIENT_ID!,
