@@ -21,13 +21,13 @@ import { Separator } from '@/components/ui/separator'
 
 export function SignUpScreen() {
     return (
-        <div className="size-full overflow-auto flex items-center justify-center p-4 relative">
+        <div className="size-full overflow-hidden flex items-center justify-center p-4 relative">
             <img
                 className="absolute inset-0 w-full h-full object-cover"
                 src={background}
                 alt="Background"
             />
-            <div className="relative z-10 w-full max-w-md">
+            <div className="relative z-10 w-full max-w-md overflow-auto max-h-full">
                 <SignUpForm />
             </div>
         </div>
@@ -90,7 +90,7 @@ function SignUpForm() {
     const [showPassword, setShowPassword] = useState(false)
 
     return (
-        <Card className="w-full bg-card border-border/50 shadow-2xl">
+        <Card className="w-full bg-card border-border/50 shadow-2xl min-w-64">
             <CardHeader className="text-center space-y-4">
                 <div className="flex justify-center">
                     <img src={logo} alt="Google Logo" className="size-16" />
@@ -120,7 +120,7 @@ function SignUpForm() {
                         <Separator />
                     </div>
                     <div className="relative flex justify-center text-xs uppercase">
-                        <span className="bg-background px-2 text-muted-foreground">
+                        <span className="bg-card px-2 text-muted-foreground">
                             Or continue with
                         </span>
                     </div>
@@ -200,7 +200,8 @@ function SignUpForm() {
 
                     <Button
                         type="submit"
-                        className="w-full h-12 text-base font-medium bg-accent hover:bg-accent/90 text-accent-foreground"
+                        className="w-full h-12 cursor-pointer"
+                        variant="secondary"
                     >
                         Sign Up
                     </Button>

@@ -1,4 +1,4 @@
-import { Navigate, useLocation } from 'react-router'
+import { Navigate, useLocation, useSearchParams } from 'react-router'
 import { useSession } from '@/auth/hooks'
 import { Center } from '@/components/center'
 import { Spinner } from '@/components/spinner'
@@ -37,12 +37,16 @@ export function AuthBarrier(props: { children?: React.ReactNode }) {
 export function NoAuthBarrier(props: { children?: React.ReactNode }) {
     const auth = useSession()
 
+    const [params] = useSearchParams()
+
+    const redirect = params.get('redirect') || '/'
+
     if (auth === undefined) {
         return <AuthLoading />
     }
 
     if (auth) {
-        return <Navigate to="" />
+        return <Navigate to={redirect} />
     }
 
     return <>{props.children}</>

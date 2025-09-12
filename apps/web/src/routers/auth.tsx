@@ -1,7 +1,7 @@
 import { Outlet, type RouteObject } from 'react-router'
-import { NoAuthBarrier } from '@/auth/components'
-import { LoginScreen } from '@/screens/login'
-import { SignUpScreen } from '@/screens/sign-up'
+import { NoAuthBarrier } from '@/auth/components/barriers'
+import { LoginScreen } from '@/auth/screens/login'
+import { SignUpScreen } from '@/auth/screens/sign-up'
 
 export const authRoute: RouteObject = {
     element: (
