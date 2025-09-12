@@ -31,6 +31,9 @@
             "suspicious": {
                 "noUnknownAtRules": "off",
                 "noArrayIndexKey": "off"
+            },
+            "nursery": {
+                "noFloatingPromises": "error"
             }
         }
     },
