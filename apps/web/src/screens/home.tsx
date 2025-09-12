@@ -5,10 +5,12 @@ import {
     useSuspenseQuery,
 } from '@tanstack/react-query'
 import { Suspense } from 'react'
+import { Scaffold } from '@/components/scaffold'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
+import { Appbar } from '@/layouts/appbar'
 
 export function HomeScreen() {
     const queryClient = useQueryClient()
@@ -25,7 +27,9 @@ export function HomeScreen() {
     )
 
     return (
-        <main className="p-2 grid grid-cols-1 md:grid-cols-2 gap-2">
+        <Scaffold
+            appbar={<Appbar breadcrumbs={[{ title: 'Home', href: '/' }]} />}
+        >
             <form
                 className="space-y-2"
                 onSubmit={(e) => {
@@ -56,7 +60,7 @@ export function HomeScreen() {
             <Suspense fallback={<div>Loading...</div>}>
                 <PostList />
             </Suspense>
-        </main>
+        </Scaffold>
     )
 }
 

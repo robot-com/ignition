@@ -1,6 +1,7 @@
 import { Bell, Search } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
+import { authClient } from '@/auth/auth-client'
 import { useUser } from '@/auth/hooks'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
@@ -20,7 +21,6 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Separator } from '@/components/ui/separator'
 import { SidebarTrigger } from '@/components/ui/sidebar'
-import { authClient } from '@/lib/auth-client'
 
 export type BreadcrumbListItem = {
     title: string

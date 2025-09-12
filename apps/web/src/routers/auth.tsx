@@ -18,5 +18,9 @@ export const authRoute: RouteObject = {
             path: '/sign-up',
             element: <SignUpScreen />,
         },
+        {
+            path: '/reset-password',
+            element: <div>Reset Password</div>,
+        },
     ],
 }

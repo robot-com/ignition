@@ -48,11 +48,11 @@ export function AppSidebar() {
                                 <img
                                     className="size-8 block"
                                     src={logo}
-                                    alt="MelodyPlay's logo"
+                                    alt="Ignition logo"
                                 />
                                 <div className="grid flex-1 text-left text-sm leading-tight">
                                     <span className="truncate font-semibold">
-                                        MelodyPlay
+                                        Ignition
                                     </span>
                                     <span className="truncate text-xs">
                                         Admin panel

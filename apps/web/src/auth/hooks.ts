@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { authClient } from '@/lib/auth-client'
+import { authClient } from '@/auth/auth-client'
 import { useLocalStorageState } from '../hooks/use-local-storage-state'
 import type { Session, User } from './types'
 

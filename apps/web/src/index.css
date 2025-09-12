@@ -8,6 +8,10 @@
     right: 0;
     top: 0;
     bottom: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
 @custom-variant dark (&:is(.dark *));
