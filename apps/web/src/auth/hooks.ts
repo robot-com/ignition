@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { useSearchParams } from 'react-router'
 import { authClient } from '@/auth/auth-client'
 import { useLocalStorageState } from '../hooks/use-local-storage-state'
 import type { Session, User } from './types'
@@ -73,4 +74,11 @@ export function useUser(): User {
     }
 
     return session.user
+}
+
+export function useCallbackURL() {
+    const [params] = useSearchParams()
+
+    const redirect = params.get('redirect') || undefined
+    return new URL(redirect || '/', window.location.href)
 }
