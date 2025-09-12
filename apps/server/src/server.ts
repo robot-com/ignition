@@ -1,5 +1,6 @@
 import type { AddressInfo } from 'node:net'
 import { serve } from '@hono/node-server'
+import { serveStatic } from '@hono/node-server/serve-static'
 import { trpcHandler } from '@shared/api/server'
 import { createContext, type HonoEnv } from '@shared/context'
 import { Hono } from 'hono'
@@ -40,6 +41,11 @@ export async function startServer({
     app.get('/health', (c) => c.json({ status: 'ok' }))
     app.all('/api/trpc/*', (c) => trpcHandler(c.req.raw, c.env))
     app.all('/api/auth/*', (c) => c.env.auth.handler(c.req.raw))
+
+    if (process.env.NODE_ENV === 'production') {
+        app.use('*', serveStatic({ root: './public', index: 'index.html' }))
+        app.get('*', serveStatic({ path: './public/index.html' }))
+    }
 
     return new Promise<AddressInfo>((resolve) => {
         const server = serve({ fetch: app.fetch, hostname, port }, resolve)

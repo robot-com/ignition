@@ -4,10 +4,12 @@
     "type": "module",
     "scripts": {
         "dev": "NODE_ENV=development node --import=tsx --watch src/main.ts",
-        "test": "NODE_ENV=production tsx --experimental-test-coverage --test **/*.test.ts"
+        "test": "NODE_ENV=production tsx --experimental-test-coverage --test **/*.test.ts",
+        "build": "esbuild src/main.ts --bundle --format=cjs --platform=node --target=node22 --outfile=dist/main.cjs"
     },
     "devDependencies": {
-        "@types/node": "^24.3.1"
+        "@types/node": "^24.3.1",
+        "esbuild": "^0.25.9"
     },
     "dependencies": {
         "@hono/node-server": "^1.19.2",
