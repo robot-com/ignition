@@ -7,19 +7,19 @@
         "./client": "./src/client/index.tsx"
     },
     "dependencies": {
+        "@packages/posts": "workspace:*",
         "@shared/api-helpers": "workspace:*",
         "@shared/context": "workspace:*",
-        "@packages/posts": "workspace:*",
-        "@tanstack/react-query": "^5.81.5",
-        "@trpc/client": "^11.4.3",
-        "@trpc/server": "^11.4.3",
-        "@trpc/tanstack-react-query": "^11.4.3",
+        "@tanstack/react-query": "^5.87.4",
+        "@trpc/client": "^11.5.1",
+        "@trpc/server": "^11.5.1",
+        "@trpc/tanstack-react-query": "^11.5.1",
         "superjson": "^2.2.2",
-        "zod": "3.25.76"
+        "zod": "4.1.8"
     },
     "devDependencies": {
-        "@types/react": "^19.1.8",
-        "react": "^19.1.0"
+        "@types/react": "^19.1.12",
+        "react": "^19.1.1"
     },
     "peerDependencies": {
         "react": "^19.1.0"

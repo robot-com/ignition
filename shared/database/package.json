@@ -9,13 +9,13 @@
         "db:push": "drizzle-kit push"
     },
     "dependencies": {
-        "drizzle-orm": "^0.44.2",
+        "drizzle-orm": "^0.44.5",
         "nanoid": "^5.1.5",
         "postgres": "^3.4.7"
     },
     "devDependencies": {
-        "@types/node": "^24.0.11",
-        "dotenv": "^17.1.0",
+        "@types/node": "^24.3.1",
+        "dotenv": "^17.2.2",
         "drizzle-kit": "^0.31.4"
     }
 }

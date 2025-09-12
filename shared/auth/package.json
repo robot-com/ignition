@@ -9,6 +9,6 @@
     },
     "dependencies": {
         "@shared/database": "workspace:*",
-        "better-auth": "^1.3.4"
+        "better-auth": "^1.3.9"
     }
 }
