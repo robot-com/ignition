@@ -1,4 +1,4 @@
-import { Navigate, Outlet, useLocation } from 'react-router'
+import { Navigate, useLocation } from 'react-router'
 import { useSession } from '@/auth/hooks'
 import { Center } from '@/components/center'
 import { Spinner } from '@/components/spinner'
@@ -11,7 +11,7 @@ export function AuthLoading() {
     )
 }
 
-export function AuthBarrier() {
+export function AuthBarrier(props: { children?: React.ReactNode }) {
     const auth = useSession()
 
     const location = useLocation()
@@ -31,10 +31,10 @@ export function AuthBarrier() {
         )
     }
 
-    return <Outlet />
+    return <>{props.children}</>
 }
 
-export function NoAuthBarrier() {
+export function NoAuthBarrier(props: { children?: React.ReactNode }) {
     const auth = useSession()
 
     if (auth === undefined) {
@@ -45,5 +45,5 @@ export function NoAuthBarrier() {
         return <Navigate to="" />
     }
 
-    return <Outlet />
+    return <>{props.children}</>
 }
