@@ -19,13 +19,13 @@ import { useCallbackURL } from '../hooks'
 
 export function AuthScreen(props: { children: ReactNode }) {
     return (
-        <div className="size-full overflow-auto flex items-center justify-center p-4 relative">
+        <div className="size-full overflow-auto flex items-center justify-center sm:p-4 relative">
             <img
                 className="absolute inset-0 w-full h-full object-cover"
                 src={background}
                 alt="Background"
             />
-            <div className="relative z-10 w-full max-w-md overflow-auto max-h-full">
+            <div className="relative z-10 w-full sm:max-w-md overflow-auto max-h-full">
                 {props.children}
             </div>
         </div>
@@ -92,7 +92,7 @@ export function AuthForm(props: AuthFormProps) {
     )
 
     return (
-        <Card className="w-full bg-card border-border/50 shadow-2xl min-w-64">
+        <Card className="w-full bg-card border-border/50 shadow-2xl min-w-64 rounded-none sm:rounded-xl">
             <CardHeader className="text-center space-y-4">
                 <div className="flex justify-center">
                     <img src={logo} alt="Google Logo" className="size-16" />
