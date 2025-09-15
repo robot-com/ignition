@@ -3,7 +3,7 @@ import { createAuthService } from '@shared/auth/services'
 import type { DBType } from '@shared/database'
 import { createDatabaseClient, createDrizzle } from '@shared/database'
 
-type Settings = {
+export type Settings = {
     env: string
 } // Replace with actual Settings type
 
@@ -11,6 +11,8 @@ export type Context = {
     auth: AuthService
     db: DBType
     settings: Settings
+
+    close: () => Promise<void>
 }
 
 export type HonoEnv = {
@@ -31,7 +33,8 @@ export async function createContext(): Promise<Context> {
         auth,
         db,
         settings,
+        close: async () => {
+            await db.$client.end()
+        },
     }
 }
-
-// export function createTestContext(): Context { .. TODO: Implement a test context if needed .. }

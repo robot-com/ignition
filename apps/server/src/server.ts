@@ -2,7 +2,7 @@ import type { AddressInfo } from 'node:net'
 import { serve } from '@hono/node-server'
 import { serveStatic } from '@hono/node-server/serve-static'
 import { trpcHandler } from '@shared/api/server'
-import { createContext, type HonoEnv } from '@shared/context'
+import { type Context, createContext, type HonoEnv } from '@shared/context'
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 
@@ -10,17 +10,18 @@ export type StartServerOptions = {
     signal?: AbortSignal
     port?: number
     hostname?: string
+    // The context can be passed as props for testing
+    context?: Context
 }
 
-export async function startServer({
-    signal,
-    port,
-    hostname,
-}: StartServerOptions): Promise<AddressInfo> {
-    const context = await createContext()
+export async function startServer(
+    options: StartServerOptions,
+): Promise<AddressInfo> {
+    const context = options.context ?? (await createContext())
 
     const app = new Hono<HonoEnv>()
 
+    // Useful for allowing auth requests from the client (if hosted on a different origin)
     app.use(
         cors({
             origin: process.env.CLIENT_URL ?? 'http://localhost:5173',
@@ -30,11 +31,11 @@ export async function startServer({
         }),
     )
 
+    // We make our context available inside Hono. This may be useful in the future
+    // if we need to implement more Hono routers or endpoints.
     app.use((c, next) => {
         c.env = context
-
-        // TODO: Logger and other stuff in this middleware
-
+        // TODO: Other stuff in this middleware
         return next()
     })
 
@@ -42,17 +43,28 @@ export async function startServer({
     app.all('/api/trpc/*', (c) => trpcHandler(c.req.raw, c.env))
     app.all('/api/auth/*', (c) => c.env.auth.handler(c.req.raw))
 
-    if (process.env.NODE_ENV === 'production') {
+    if (context.settings.env === 'production') {
         app.use('*', serveStatic({ root: './public', index: 'index.html' }))
         app.get('*', serveStatic({ path: './public/index.html' }))
     }
 
     return new Promise<AddressInfo>((resolve) => {
-        const server = serve({ fetch: app.fetch, hostname, port }, resolve)
+        const server = serve(
+            {
+                fetch: app.fetch,
+                hostname: options.hostname,
+                port: options.port,
+            },
+            resolve,
+        )
 
-        signal?.addEventListener('abort', () => {
+        options.signal?.addEventListener('abort', async () => {
             server.close()
-            context.db.$client.end()
+            // We close the context automatically on server end only if
+            // the startServer function created it
+            if (!options.context) {
+                await context.close()
+            }
         })
     })
 }
