@@ -1,10 +1,8 @@
 import { type FormEvent, type ReactNode, useCallback } from 'react'
 import { Link } from 'react-router'
-import { toast } from 'sonner'
 import background from '@/assets/background.jpg'
 import google from '@/assets/google.svg'
 import logo from '@/assets/icon.png'
-import { authClient } from '@/auth/auth-client'
 import { loginWithGoogle } from '@/auth/utils'
 import { Button } from '@/components/ui/button'
 import {
@@ -51,46 +49,6 @@ export function AuthForm(props: AuthFormProps) {
         [callbackURL],
     )
 
-    const handleSubmit = useCallback(
-        (e: React.FormEvent) => {
-            e.preventDefault()
-
-            const formData = new FormData(e.target as HTMLFormElement)
-
-            const email = formData.get('email') as string
-            const password = formData.get('password') as string
-
-            toast.loading('Signing in', { position: 'top-center' })
-            authClient.signIn
-                .email({
-                    email,
-                    password,
-                    callbackURL: callbackURL.href,
-                })
-                .then((r) => {
-                    toast.dismiss()
-                    if (r.error) {
-                        toast.error(r.error.message ?? 'Login failed', {
-                            position: 'top-center',
-                            duration: 100_0000,
-                        })
-                    } else {
-                        toast.success('Login successful!', {
-                            position: 'top-center',
-                        })
-                    }
-                })
-                .catch(() => {
-                    toast.dismiss()
-                    toast.error('Login failed', {
-                        position: 'top-center',
-                        duration: 100_0000,
-                    })
-                })
-        },
-        [callbackURL],
-    )
-
     return (
         <Card className="w-full bg-card border-border/50 shadow-2xl min-w-64 rounded-none sm:rounded-xl">
             <CardHeader className="text-center space-y-4">
@@ -128,7 +86,7 @@ export function AuthForm(props: AuthFormProps) {
                     </div>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={props.onSubmit} className="space-y-4">
                     {props.children}
                     <div className="flex justify-around text-sm">
                         <Button asChild variant="link">
