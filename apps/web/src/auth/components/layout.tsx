@@ -35,10 +35,11 @@ export type AuthFormProps = {
     description: string
     onSubmit: (e: FormEvent) => void
     children: ReactNode
-    action: {
+    socialSignIn?: boolean
+    actions: {
         title: string
         pathname: string
-    }
+    }[]
 }
 
 export function AuthForm(props: AuthFormProps) {
@@ -57,51 +58,53 @@ export function AuthForm(props: AuthFormProps) {
                 </div>
                 <div className="space-y-2">
                     <CardTitle className="text-2xl font-bold text-balance">
-                        Ignition
+                        {props.title}
                     </CardTitle>
                     <CardDescription className="text-muted-foreground text-balance">
-                        Full stack platform template. Sign in to your account to
-                        continue or create a new one.
+                        {props.description}
                     </CardDescription>
                 </div>
             </CardHeader>
             <CardContent className="space-y-6">
-                <Button
-                    variant="outline"
-                    className="h-12 w-full"
-                    onClick={handleLoginGoogle}
-                >
-                    <img src={google} className="size-6" alt="Google" />
-                    Continue with google
-                </Button>
+                {props.socialSignIn !== false && (
+                    <>
+                        <Button
+                            variant="outline"
+                            className="h-12 w-full"
+                            onClick={handleLoginGoogle}
+                        >
+                            <img src={google} className="size-6" alt="Google" />
+                            Continue with google
+                        </Button>
 
-                <div className="relative">
-                    <div className="absolute inset-0 flex items-center">
-                        <Separator />
-                    </div>
-                    <div className="relative flex justify-center text-xs uppercase">
-                        <span className="bg-card px-2 text-muted-foreground">
-                            Or continue with
-                        </span>
-                    </div>
-                </div>
+                        <div className="relative">
+                            <div className="absolute inset-0 flex items-center">
+                                <Separator />
+                            </div>
+                            <div className="relative flex justify-center text-xs uppercase">
+                                <span className="bg-card px-2 text-muted-foreground">
+                                    Or continue with
+                                </span>
+                            </div>
+                        </div>
+                    </>
+                )}
 
                 <form onSubmit={props.onSubmit} className="space-y-4">
                     {props.children}
                     <div className="flex justify-around text-sm">
-                        <Button asChild variant="link">
-                            <Link
-                                to={{
-                                    pathname: props.action.pathname,
-                                    search: `?redirect=${encodeURIComponent(`${callbackURL.pathname}${callbackURL.search}`)}`,
-                                }}
-                            >
-                                {props.action.title}
-                            </Link>
-                        </Button>
-                        <Button asChild variant="link">
-                            <Link to="/reset-password">Reset password</Link>
-                        </Button>
+                        {props.actions.map((action, i) => (
+                            <Button asChild variant="link" key={i}>
+                                <Link
+                                    to={{
+                                        pathname: action.pathname,
+                                        search: `?redirect=${encodeURIComponent(`${callbackURL.pathname}${callbackURL.search}`)}`,
+                                    }}
+                                >
+                                    {action.title}
+                                </Link>
+                            </Button>
+                        ))}
                     </div>
                 </form>
             </CardContent>

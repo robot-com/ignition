@@ -22,6 +22,7 @@ export function SignUpScreen() {
             const password = formData.get('password') as string
 
             toast.loading('Signing in', { position: 'top-center' })
+
             authClient.signUp
                 .email({
                     email,
@@ -62,7 +63,10 @@ export function SignUpScreen() {
                 title="Ignition"
                 description="Full stack platform template. Create new account to get
                         started. Or login if you already have one."
-                action={{ pathname: '/login', title: 'Login' }}
+                actions={[
+                    { title: 'Login', pathname: '/login' },
+                    { title: 'Reset password', pathname: '/reset-password' },
+                ]}
             >
                 <div className="space-y-2">
                     <Label

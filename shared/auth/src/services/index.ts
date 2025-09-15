@@ -9,6 +9,9 @@ function createBetterAuth(db: DBType) {
         trustedOrigins: [process.env.CLIENT_URL ?? 'http://localhost:5173'],
         emailAndPassword: {
             enabled: true,
+            sendResetPassword: async (data, _request) => {
+                console.debug('Reset password requested for', data)
+            },
         },
         socialProviders: {
             google: {

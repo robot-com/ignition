@@ -1,15 +1,15 @@
-import { EyeIcon, EyeOffIcon, LockIcon, MailIcon } from 'lucide-react'
+import { EyeIcon, EyeOffIcon, LockIcon } from 'lucide-react'
 import { useCallback, useState } from 'react'
+import { useSearchParams } from 'react-router'
 import { toast } from 'sonner'
 import { authClient } from '@/auth/auth-client'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { AuthForm, AuthScreen } from '../components/layout'
-import { useCallbackURL } from '../hooks'
 
-export function LoginScreen() {
-    const callbackURL = useCallbackURL()
+export function NewPasswordScreen() {
+    const [params] = useSearchParams()
 
     const handleSubmit = useCallback(
         (e: React.FormEvent) => {
@@ -17,38 +17,51 @@ export function LoginScreen() {
 
             const formData = new FormData(e.target as HTMLFormElement)
 
-            const email = formData.get('email') as string
-            const password = formData.get('password') as string
+            const newPassword = formData.get('password') as string
+            const confirmPassword = formData.get('confirm-password') as string
 
-            toast.loading('Signing in', { position: 'top-center' })
-            authClient.signIn
-                .email({
-                    email,
-                    password,
-                    callbackURL: callbackURL.href,
+            if (newPassword !== confirmPassword) {
+                toast.error('Passwords do not match', {
+                    position: 'top-center',
+                })
+                return
+            }
+
+            toast.loading('Requesting reset password', {
+                position: 'top-center',
+            })
+            authClient
+                .resetPassword({
+                    token: params.get('token') ?? '',
+                    newPassword,
                 })
                 .then((r) => {
                     toast.dismiss()
                     if (r.error) {
-                        toast.error(r.error.message ?? 'Login failed', {
-                            position: 'top-center',
-                            duration: 100_0000,
-                        })
+                        toast.error(
+                            r.error.message ?? 'Reset password failed',
+                            {
+                                position: 'top-center',
+                                duration: 100_0000,
+                            },
+                        )
                     } else {
-                        toast.success('Login successful!', {
+                        toast.success('Reset password successful!', {
+                            description:
+                                'You can now log in with your new password.',
                             position: 'top-center',
                         })
                     }
                 })
                 .catch(() => {
                     toast.dismiss()
-                    toast.error('Login failed', {
+                    toast.error('Reset password failed', {
                         position: 'top-center',
                         duration: 100_0000,
                     })
                 })
         },
-        [callbackURL],
+        [params],
     )
 
     const [showPassword, setShowPassword] = useState(false)
@@ -56,35 +69,15 @@ export function LoginScreen() {
     return (
         <AuthScreen>
             <AuthForm
-                title="Ignition"
-                description="Full stack platform template. Sign in to your account to
-                        continue or create a new one."
+                socialSignIn={false}
+                title="New Password"
+                description="Please enter your new password."
                 onSubmit={handleSubmit}
                 actions={[
-                    { title: 'Create new account', pathname: '/sign-up' },
-                    { title: 'Reset password', pathname: '/reset-password' },
+                    { title: 'Login', pathname: '/login' },
+                    { title: 'Sign Up', pathname: '/sign-up' },
                 ]}
             >
-                <div className="space-y-2">
-                    <Label
-                        htmlFor="email"
-                        className="text-sm font-medium text-card-foreground"
-                    >
-                        Email
-                    </Label>
-                    <div className="relative">
-                        <MailIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                        <Input
-                            name="email"
-                            type="email"
-                            autoComplete="email"
-                            placeholder="tcichero@robot.com"
-                            className="pl-10 h-12 bg-input border-border focus:ring-ring"
-                            required
-                        />
-                    </div>
-                </div>
-
                 <div className="space-y-2">
                     <Label
                         htmlFor="password"
@@ -116,12 +109,43 @@ export function LoginScreen() {
                     </div>
                 </div>
 
+                <div className="space-y-2">
+                    <Label
+                        htmlFor="confirm-password"
+                        className="text-sm font-medium text-card-foreground"
+                    >
+                        Confirm Password
+                    </Label>
+                    <div className="relative">
+                        <LockIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                        <Input
+                            name="confirm-password"
+                            type={showPassword ? 'text' : 'password'}
+                            placeholder="Enter your password"
+                            autoComplete="current-password"
+                            className="pl-10 pr-10 h-12 bg-input border-border focus:ring-ring"
+                            required
+                        />
+                        <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                        >
+                            {showPassword ? (
+                                <EyeOffIcon className="size-4" />
+                            ) : (
+                                <EyeIcon className="size-4" />
+                            )}
+                        </button>
+                    </div>
+                </div>
+
                 <Button
                     type="submit"
                     className="w-full h-12 cursor-pointer"
                     variant="secondary"
                 >
-                    Login
+                    Reset Password
                 </Button>
             </AuthForm>
         </AuthScreen>
