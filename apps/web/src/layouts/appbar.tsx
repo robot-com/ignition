@@ -3,14 +3,14 @@ import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { authClient } from '@/auth/auth-client'
 import { useUser } from '@/auth/hooks'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Avatar, AvatarFallback, AvatarImage } from '@shared/components/ui/avatar'
 import {
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
     BreadcrumbList,
-} from '@/components/ui/breadcrumb'
-import { Button } from '@/components/ui/button'
+} from '@shared/components/ui/breadcrumb'
+import { Button } from '@shared/components/ui/button'
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -18,9 +18,9 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import { Separator } from '@/components/ui/separator'
-import { SidebarTrigger } from '@/components/ui/sidebar'
+} from '@shared/components/ui/dropdown-menu'
+import { Separator } from '@shared/components/ui/separator'
+import { SidebarTrigger } from '@shared/components/ui/sidebar'
 
 export type BreadcrumbListItem = {
     title: string

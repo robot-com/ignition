@@ -1,5 +1,5 @@
 import type { ComponentProps } from 'react'
-import { cn } from '@/lib/utils'
+import { cn } from '@shared/components/lib/utils'
 
 export function Center(props: ComponentProps<'div'>) {
     return (

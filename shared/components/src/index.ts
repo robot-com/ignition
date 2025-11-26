@@ -1,3 +1,1 @@
-/**
- * Export shared react comonents
- */
+// Export shared components here
