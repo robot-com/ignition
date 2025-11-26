@@ -1,6 +1,6 @@
 import { Loader2Icon } from 'lucide-react'
 import { type ReactNode, Suspense } from 'react'
-import { cn } from '@/lib/utils'
+import { cn } from '@shared/components/lib/utils'
 
 export type ScaffoldProps = {
     appbar: ReactNode

@@ -26,9 +26,22 @@
         "isolatedModules": true,
         "jsx": "react-jsx",
         "useDefineForClassFields": true,
-        "lib": ["DOM", "DOM.Iterable", "ESNext"],
+        "lib": [
+            "DOM",
+            "DOM.Iterable",
+            "ESNext"
+        ],
         "module": "esnext",
-        "target": "ESNext"
+        "target": "ESNext",
+        "baseUrl": ".",
+        "paths": {
+            "@shared/components": [
+                "shared/components/src/index.ts"
+            ],
+            "@shared/components/*": [
+                "shared/components/src/*"
+            ]
+        }
     },
     "files": [],
     "references": [

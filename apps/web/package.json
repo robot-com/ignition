@@ -25,6 +25,7 @@
         "@radix-ui/react-tooltip": "^1.2.8",
         "@shared/api": "workspace:*",
         "@shared/auth": "workspace:*",
+        "@shared/components": "workspace:*",
         "@tanstack/react-query": "^5.87.4",
         "@types/react": "^19.1.12",
         "@types/react-dom": "^19.1.9",

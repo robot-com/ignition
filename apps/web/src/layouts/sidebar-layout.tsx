@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
+import { SidebarInset, SidebarProvider } from '@shared/components/ui/sidebar'
 import { AppSidebar } from './sidebar'
 
 export function SidebarLayout(props: { children: ReactNode }) {
